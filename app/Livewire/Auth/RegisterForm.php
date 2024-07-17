@@ -6,13 +6,14 @@ use Exception;
 use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 
 class RegisterForm extends Component
 {
-    public $nama;
+    public $name;
     public $username;
     public $password;
 
@@ -20,7 +21,7 @@ class RegisterForm extends Component
     {
         try {
             $validated = $this->validate([
-                'nama' => 'required|min:1|regex:/^[\pL\s]+$/u',
+                'name' => 'required|min:1|regex:/^[\pL\s]+$/u',
                 'username' => 'required|max:18|alpha_num|unique:users',
                 'password' => 'required|min:6'
             ]);
@@ -32,7 +33,7 @@ class RegisterForm extends Component
 
             $user = User::create($validated);
 
-            Auth::loginUsingId($user->id);
+            Auth::loginUsingId($user->id, true);
             Session::flush();
             Session::flash('success', 'Login berhasil.');
 

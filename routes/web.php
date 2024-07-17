@@ -14,13 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard.index', ['title' => "Dashboard"]);
+Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return view('dashboard.index', ['title' => "Dashboard"]);
+    });
+
+    Route::get('/plagiarism', function () {
+        return view('plagiarism.index', ['title' => "Plagiarism"]);
+    });
 });
 
-Route::get('/plagiarism', function () {
-    return view('plagiarism.index', ['title' => "Plagiarism"]);
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+    Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
 });
-
-Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
-Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
