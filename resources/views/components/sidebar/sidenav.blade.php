@@ -37,7 +37,7 @@
                  </div>
              </div>
 
-             <form action="" method="POST">
+             <form action="{{ route('auth.logout') }}" method="POST">
                  @csrf
                  <button type="submit"
                      class="inline-block w-full px-8 py-2 mb-4 text-xs font-bold leading-normal text-center text-white capitalize transition-all 
