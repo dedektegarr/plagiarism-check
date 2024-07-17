@@ -1,14 +1,13 @@
 <div>
-    @if (session('success'))
-        <div class="mx-6 p-4 rounded-md border border-green-400 bg-green-400/20">
-            <p class="text-sm text-green-400 mb-0">{{ session('success') }}</p>
-        </div>
-    @endif
-    @if (session('error'))
-        <div class="mx-6 p-4 rounded-md border invalid-input bg-red-400/20">
-            <p class="text-sm text-red-400 mb-0">{{ session('error') }}</p>
-        </div>
-    @endif
+    <div class="mx-6">
+        @if (session('success'))
+            <x-ui.error-box status="success" :message="session('success')" />
+        @endif
+        @if (session('error'))
+            <x-ui.error-box status="error" :message="session('error')" />
+        @endif
+    </div>
+
     <div class="flex-auto p-6">
         <form role="form text-left" wire:submit.prevent="authenticate">
             @csrf

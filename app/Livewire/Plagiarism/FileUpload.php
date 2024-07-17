@@ -11,7 +11,7 @@ class FileUpload extends Component
 
     public $file;
 
-    public function save()
+    public function uploadDocument()
     {
         dd($this->file);
     }

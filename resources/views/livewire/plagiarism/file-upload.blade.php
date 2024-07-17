@@ -1,5 +1,5 @@
 <div x-data="documentUpload()">
-    <form wire:submit.prevent="save">
+    <form wire:submit.prevent="uploadDocument">
         @csrf
         <div class="flex flex-wrap -mx-3 gap-4 lg:gap-0">
             <div class="w-full max-w-full px-3 mt-0 flex-1">
@@ -45,8 +45,7 @@
                                         <i class="text-white fas fa-user relative top-0.75 text-xxs"></i>
                                     </div>
                                     <div class="flex flex-col">
-                                        <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">
-                                            Author
+                                        <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">Author
                                         </h6>
                                         <span class="text-xs leading-tight dark:text-white/80" x-text="author"></span>
                                     </div>
@@ -73,18 +72,21 @@
                                         <i class="text-white fas fa-save relative top-0.75 text-xxs"></i>
                                     </div>
                                     <div class="flex flex-col">
-                                        <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">Size
-                                        </h6>
+                                        <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">Size</h6>
                                         <span class="text-xs leading-tight dark:text-white/80" x-text="size"></span>
                                     </div>
                                 </div>
                             </li>
                         </ul>
 
-                        <button type="submit"
+                        @if (session('error'))
+                            <x-ui.error-box status="error" :message="session('error')" />
+                        @endif
+
+                        <button type="submit" wire:loading.attr="disabled" wire:target="file, uploadDocument"
                             class="mt-3 w-full block px-3 py-3 mr-3 font-bold text-center text-white align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl 
                         from-blue-500 to-violet-500 leading-normal text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25 hover:-translate-y-px 
-                        active:opacity-85 hover:shadow-md">
+                        active:opacity-85 hover:shadow-md disabled:opacity-40 disabled:cursor-wait">
                             <i class="fas fa-upload mr-1"></i> Submit
                         </button>
 
