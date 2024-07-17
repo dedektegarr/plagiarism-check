@@ -23,9 +23,21 @@
 <body
     class="m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500">
 
-    {{ $slot }}
+    <div class="container min-h-screen flex items-center justify-center">
+        <div class="flex flex-wrap w-full">
+            <div class="w-full max-w-full px-3 mx-auto mt-0 md:flex-0 shrink-0 md:w-7/12 lg:w-5/12 xl:w-4/12">
+                <div
+                    class="relative z-0 flex flex-col min-w-0 break-words bg-white border-0 shadow-xl rounded-2xl bg-clip-border">
+                    <div class="p-6 mb-0 text-center bg-white border-b-0 rounded-t-2xl">
+                        <h5>{{ $title }}</h5>
+                    </div>
+                    {{ $slot }}
 
-    @livewireScripts
+                </div>
+            </div>
+        </div>
+
+        @livewireScripts
 </body>
 
 </html>
