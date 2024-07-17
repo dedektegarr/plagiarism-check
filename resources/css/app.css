@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.invalid-input {
+    @apply !border-red-400 placeholder:!text-red-400;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;

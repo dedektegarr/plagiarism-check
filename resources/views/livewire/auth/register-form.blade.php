@@ -14,7 +14,9 @@
             @csrf
             <div class="mb-4">
                 <input type="text" wire:model="nama"
-                    class="@error('nama') border-red-400 @enderror placeholder:text-gray-500 text-sm focus:shadow-primary-outline leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-blue-500 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
+                    class="@error('nama') invalid-input @enderror placeholder:text-gray-500 text-sm focus:shadow-primary-outline leading-5.6 ease block w-full appearance-none rounded-lg border 
+                    border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-blue-500 
+                    focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
                     placeholder="Nama" aria-label="nama" aria-describedby="nama-addon">
                 @error('nama')
                     <span class="text-sm text-red-400">{{ $message }}</span>
@@ -22,7 +24,9 @@
             </div>
             <div class="mb-4">
                 <input type="text" wire:model="username"
-                    class="@error('username') border-red-400 @enderror uppercase placeholder:text-gray-500 text-sm focus:shadow-primary-outline leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-blue-500 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
+                    class=" @error('username') invalid-input @enderror uppercase placeholder:text-gray-500 text-sm focus:shadow-primary-outline leading-5.6 ease block w-full appearance-none rounded-lg 
+                    border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-blue-500 
+                    focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
                     placeholder="NIP / NPM" aria-label="username" aria-describedby="username-addon">
                 @error('username')
                     <span class="text-sm text-red-400">{{ $message }}</span>
@@ -30,7 +34,11 @@
             </div>
             <div class="mb-4">
                 <input type="password" wire:model="password"
-                    class="@error('password') border-red-400 @enderror placeholder:text-gray-500 text-sm focus:shadow-primary-outline leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-blue-500 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
+                    class="@error('password') invalid-input @enderror
+                    placeholder:text-gray-500 text-sm focus:shadow-primary-outline leading-5.6 ease block w-full
+                    appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3
+                    font-normal text-gray-700 transition-all focus:border-blue-500 focus:bg-white focus:text-gray-700
+                    focus:outline-none focus:transition-shadow"
                     placeholder="Password" aria-label="Password" aria-describedby="password-addon">
                 @error('password')
                     <span class="text-sm text-red-400">{{ $message }}</span>
@@ -38,7 +46,7 @@
             </div>
 
             <div class="text-center">
-                <div role="status" wire:loading>
+                {{-- <div role="status" wire:loading>
                     <svg aria-hidden="true"
                         class="inline w-6 h-6 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
                         viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,7 +58,7 @@
                             fill="currentFill" />
                     </svg>
                     <span class="sr-only">Loading...</span>
-                </div>
+                </div> --}}
 
                 <button type="submit" wire:loading.attr="disabled" wire:loading.class="opacity-70"
                     class="inline-block w-full px-5 py-2.5 mt-6 mb-2 font-bold text-center text-white align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer active:opacity-85 hover:-translate-y-px hover:shadow-xs leading-normal text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25 bg-gradient-to-tl from-zinc-800 to-zinc-700 hover:border-slate-700 hover:bg-slate-700 hover:text-white">
