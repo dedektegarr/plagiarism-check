@@ -5,7 +5,7 @@
         </div>
     @endif
     @if (session('error'))
-        <div class="mx-6 p-4 rounded-md border border-red-400 bg-red-400/20">
+        <div class="mx-6 p-4 rounded-md border invalid-input bg-red-400/20">
             <p class="text-sm text-red-400 mb-0">{{ session('error') }}</p>
         </div>
     @endif
@@ -14,7 +14,7 @@
             @csrf
             <div class="mb-4">
                 <input type="text" wire:model="username"
-                    class="@error('username') border-red-400 @enderror uppercase placeholder:text-gray-500 text-sm focus:shadow-primary-outline leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-blue-500 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
+                    class="@error('username') invalid-input @enderror uppercase placeholder:text-gray-500 text-sm focus:shadow-primary-outline leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-blue-500 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
                     placeholder="NIP / NPM" aria-label="username" aria-describedby="username-addon">
                 @error('username')
                     <span class="text-sm text-red-400">{{ $message }}</span>
@@ -22,7 +22,7 @@
             </div>
             <div class="mb-4">
                 <input type="password" wire:model="password"
-                    class="@error('password') border-red-400 @enderror placeholder:text-gray-500 text-sm focus:shadow-primary-outline leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-blue-500 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
+                    class="@error('password') invalid-input @enderror placeholder:text-gray-500 text-sm focus:shadow-primary-outline leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-blue-500 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
                     placeholder="Password" aria-label="Password" aria-describedby="password-addon">
                 @error('password')
                     <span class="text-sm text-red-400">{{ $message }}</span>
@@ -30,7 +30,7 @@
             </div>
 
             <div class="text-center">
-                <div role="status" wire:loading>
+                <div role="status" class="hidden" wire:loading.class="!block">
                     <svg aria-hidden="true"
                         class="inline w-6 h-6 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
                         viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

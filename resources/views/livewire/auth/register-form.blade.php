@@ -46,7 +46,7 @@
             </div>
 
             <div class="text-center">
-                {{-- <div role="status" wire:loading>
+                <div role="status" class="hidden" wire:loading.class="!block">
                     <svg aria-hidden="true"
                         class="inline w-6 h-6 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
                         viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +58,7 @@
                             fill="currentFill" />
                     </svg>
                     <span class="sr-only">Loading...</span>
-                </div> --}}
+                </div>
 
                 <button type="submit" wire:loading.attr="disabled" wire:loading.class="opacity-70"
                     class="inline-block w-full px-5 py-2.5 mt-6 mb-2 font-bold text-center text-white align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer active:opacity-85 hover:-translate-y-px hover:shadow-xs leading-normal text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25 bg-gradient-to-tl from-zinc-800 to-zinc-700 hover:border-slate-700 hover:bg-slate-700 hover:text-white">

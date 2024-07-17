@@ -29,7 +29,7 @@
                  <div class="flex-auto w-full p-4 pt-0 text-center">
                      <div class="transition-all duration-200 ease-nav-brand">
                          <h6 class="mb-1 mt-2 dark:text-white text-slate-700 capitalize">
-                             {{ Auth::user()->nama ?? 'Name' }}</h6>
+                             {{ Auth::user()->name ?? 'Name' }}</h6>
                          <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-60">
                              {{ Auth::user()->role ?? 'Role' }}
                          </p>
