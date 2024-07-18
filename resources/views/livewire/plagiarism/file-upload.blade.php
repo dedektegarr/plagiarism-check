@@ -32,9 +32,9 @@
                 x-transition:enter.duration.500ms>
                 <div
                     class="border-black/12.5 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
-                    <div class="p-4 pb-0 rounded-t-4 flex items-center">
+                    <div class="p-4 pb-0 rounded-t-4 flex">
                         <h6 class="mb-0 dark:text-white line-clamp-1" x-text="title"></h6>
-                        <span class="text-sm font-bold">.pdf</span>
+                        <span class="text-sm font-bold mt-1 flex-1">.pdf</span>
                     </div>
                     <div class="flex-auto p-4">
                         <ul class="flex flex-col pl-0 mb-0 rounded-lg">

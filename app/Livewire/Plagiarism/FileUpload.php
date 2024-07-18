@@ -7,6 +7,7 @@ use App\Models\Document;
 use Exception;
 use Illuminate\Support\Str;
 use Smalot\PdfParser\Parser;
+use \Spatie\PdfToImage\Pdf;
 use Livewire\WithFileUploads;
 
 class FileUpload extends Component
@@ -21,11 +22,16 @@ class FileUpload extends Component
             'file' => 'required|file|mimes:pdf'
         ]);
 
-        $parser = new Parser();
-
         $pathName = $this->file->getPathname();
-        $pdf = $parser->parseFile($pathName);
 
+        // PDF to image for upload pdf cover
+        $pdfCover = new Pdf($pathName);
+
+        dd($pdfCover);
+
+        // PDF Parser
+        $parser = new Parser();
+        $pdf = $parser->parseFile($pathName);
         $metadata = $pdf->getDetails();
 
         try {

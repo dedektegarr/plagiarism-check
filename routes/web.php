@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/plagiarism', function () {
-        return view('plagiarism.index', ['title' => "Plagiarism"]);
+        return view('plagiarism.index', ['title' => "Plagiarism Check"]);
     });
 });
 
