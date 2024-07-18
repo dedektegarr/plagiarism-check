@@ -1,10 +1,10 @@
 <div>
     <div class="mx-6">
         @if (session('success'))
-            <x-ui.error-box status="success" :message="session('success')" />
+            <x-ui.alert-box status="success" :message="session('success')" />
         @endif
         @if (session('error'))
-            <x-ui.error-box status="error" :message="session('error')" />
+            <x-ui.alert-box status="error" :message="session('error')" />
         @endif
     </div>
 

@@ -80,8 +80,11 @@
                             </li>
                         </ul>
 
+                        @if (session('success'))
+                            <x-ui.alert-box status="success" :message="session('success')" />
+                        @endif
                         @if (session('error'))
-                            <x-ui.error-box status="error" :message="session('error')" />
+                            <x-ui.alert-box status="error" :message="session('error')" />
                         @endif
 
                         <button type="submit" wire:loading.attr="disabled" wire:target="file, uploadDocument"
@@ -121,7 +124,7 @@
 
                     this.file = file;
                     this.fileUrl = URL.createObjectURL(file);
-                    this.title = document.getTitle().split('.')[0] || file.name.split('.')[0] || 'Unknown';
+                    this.title = document.getTitle()?.split('.')[0] || file.name?.split('.')[0] || 'Unknown';
                     this.size = file.size;
                     this.author = document.getAuthor() || 'Unkonwn';
                     this.pages = document.getPages().length;
