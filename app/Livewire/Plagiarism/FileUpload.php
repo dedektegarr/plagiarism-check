@@ -24,11 +24,6 @@ class FileUpload extends Component
 
         $pathName = $this->file->getPathname();
 
-        // PDF to image for upload pdf cover
-        $pdfCover = new Pdf($pathName);
-
-        dd($pdfCover);
-
         // PDF Parser
         $parser = new Parser();
         $pdf = $parser->parseFile($pathName);
@@ -48,6 +43,13 @@ class FileUpload extends Component
                 'file' => $filename
             ];
 
+            // PDF to image for upload pdf cover
+            $coverOutputPath = storage_path('app/cover/' . time() . '-' . $data['title'] . '.png');
+
+            $pdfCover = new Pdf($pathName);
+            $pdfCover->saveImage($coverOutputPath);
+
+            // save to database
             Document::create($data);
 
             return redirect()->back()->with('success', 'Dokumen berhasil di upload');
