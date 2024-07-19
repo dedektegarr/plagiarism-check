@@ -45,8 +45,12 @@
                                     <tr>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                            <img src="{{ Storage::url($document->cover) }}" alt="{{ $document->title }}"
+                                                width="100">
                                             <span
-                                                class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">{{ $document->cover }}</span>
+                                                class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
+
+                                            </span>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">

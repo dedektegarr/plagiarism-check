@@ -31,7 +31,9 @@ class FileUpload extends Component
 
         try {
             // upload file and get filename
-            $filename = $this->file->store('documents');
+            $fileOutputPath = $this->file->store('public/documents');
+            $filenameArr = explode('/', $fileOutputPath);
+            $filename = 'documents/' . $filenameArr[count($filenameArr) - 1];
 
             $data = [
                 'id' => Str::uuid(),
@@ -44,12 +46,13 @@ class FileUpload extends Component
             ];
 
             // PDF to image for upload pdf cover
-            $coverOutputPath = storage_path('app/cover/' . time() . '-' . $data['title'] . '.png');
+            $time = time();
+            $coverOutputPath = storage_path('app/public/cover/' . $time . '-' . $data['title'] . '.png');
 
             $pdfCover = new Pdf($pathName);
             $pdfCover->saveImage($coverOutputPath);
 
-            $data['cover'] = 'cover/' . time() . '-' . $data['title'] . '.png';
+            $data['cover'] = 'cover/' . $time . '-' . $data['title'] . '.png';
 
             // save to database
             Document::create($data);
