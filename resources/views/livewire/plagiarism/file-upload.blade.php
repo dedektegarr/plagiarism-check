@@ -16,7 +16,7 @@
                             <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Klik
                                     untuk
                                     upload</span> atau seret dan lepas</p>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">PDF, DOCX</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">PDF</p>
                         </div>
                         <input @change="previewPdf" wire:model="file" id="dropzone-file" type="file"
                             class="hidden" />

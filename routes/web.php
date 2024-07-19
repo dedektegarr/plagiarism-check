@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Models\Document;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/plagiarism', function () {
-        return view('plagiarism.index', ['title' => "Plagiarism Check"]);
+        return view('plagiarism.index', ['title' => "Plagiarism Check", 'documents' => Document::all()]);
     });
 });
 
