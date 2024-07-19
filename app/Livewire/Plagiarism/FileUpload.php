@@ -49,6 +49,8 @@ class FileUpload extends Component
             $pdfCover = new Pdf($pathName);
             $pdfCover->saveImage($coverOutputPath);
 
+            $data['cover'] = 'cover/' . time() . '-' . $data['title'] . '.png';
+
             // save to database
             Document::create($data);
 

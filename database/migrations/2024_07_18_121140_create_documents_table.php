@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('author')->nullable();
             $table->integer('pages')->nullable();
+            $table->string('cover');
             $table->string('file');
             $table->timestamp('creation_date')->nullable();
             $table->timestamp('mod_date')->nullable();
