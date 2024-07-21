@@ -14,6 +14,6 @@ class PlagiarismController extends Controller
 
     public function details(Document $document)
     {
-        return view('plagiarism.details', ['title' => $document->title]);
+        return view('plagiarism.details', ['title' => $document->title ?? $document->author ?? 'Unkonwn']);
     }
 }

@@ -7,10 +7,10 @@
              sidenav-close="" aria-hidden="true"></i>
          <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap dark:text-white text-slate-700"
              href="{{ config('app.url') }}">
-             <img src="./assets/img/logo-ct-dark.png"
+             <img src="{{ asset('assets/img/logo-ct-dark.png') }}"
                  class="inline h-full max-w-full transition-all duration-200 dark:hidden ease-nav-brand max-h-8"
                  alt="main_logo">
-             <img src="./assets/img/logo-ct.png"
+             <img src="{{ asset('assets/img/logo-ct.png') }}"
                  class="hidden h-full max-w-full transition-all duration-200 dark:inline ease-nav-brand max-h-8"
                  alt="main_logo">
              <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand">{{ config('app.name') }}</span>
@@ -25,7 +25,7 @@
              <div class="relative flex flex-col min-w-0 break-words bg-transparent border-0 shadow-none rounded-2xl bg-clip-border"
                  sidenav-card="">
                  <img class="w-1/2 mx-auto h-1/2 rounded-full object-cover object-center shadow-sm"
-                     src="./assets/img/bruce-mars.jpg" alt="sidebar illustrations">
+                     src="{{ asset('assets/img/bruce-mars.jpg') }}" alt="sidebar illustrations">
                  <div class="flex-auto w-full p-4 pt-0 text-center">
                      <div class="transition-all duration-200 ease-nav-brand">
                          <h6 class="mb-1 mt-2 dark:text-white text-slate-700 capitalize">
@@ -55,7 +55,7 @@
                  href="/">Dashboard</x-sidebar.sidenav-link>
 
              <x-sidebar.sidenav-link :active="request()->is('plagiarism')" icon="fas fa-edit text-orange-500"
-                 href="/plagiarism">Plagiarism</x-sidebar.sidenav-link>
+                 href="{{ route('plagiarism.index') }}">Plagiarism</x-sidebar.sidenav-link>
 
          </ul>
      </div>

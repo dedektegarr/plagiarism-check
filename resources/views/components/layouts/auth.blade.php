@@ -16,7 +16,7 @@
     @vite('resources/css/app.css')
 
     {{-- Template Styling --}}
-    <link rel="stylesheet" href="./assets/css/argon-dashboard-tailwind.min.css">
+    <script src="{{ asset('assets/js/argon-dashboard-tailwind.min.js') }}"></script>
 
 </head>
 

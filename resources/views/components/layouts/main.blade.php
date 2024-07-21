@@ -16,7 +16,7 @@
     @vite('resources/css/app.css')
 
     {{-- Template Styling --}}
-    <link rel="stylesheet" href="./assets/css/argon-dashboard-tailwind.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/argon-dashboard-tailwind.min.css') }}">
 
 </head>
 
@@ -38,7 +38,10 @@
         </div>
     </main>
 
-    <script src="./assets/js/argon-dashboard-tailwind.min.js"></script>
+    <script src="{{ asset('assets/js/argon-dashboard-tailwind.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dropdown.js') }}"></script>
+    <script src="{{ asset('assets/js/navbar-sticky.js') }}"></script>
+    <script src="{{ asset('assets/js/sidenav-burger.js') }}"></script>
     @livewireScripts
 </body>
 
