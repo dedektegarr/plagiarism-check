@@ -44,9 +44,9 @@
                                 @foreach ($documents as $document)
                                     <tr>
                                         <td
-                                            class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                            class="p-4 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                             <img src="{{ Storage::url($document->cover) }}" alt="{{ $document->title }}"
-                                                width="100">
+                                                width="80">
                                             <span
                                                 class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">
 
@@ -79,8 +79,9 @@
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                                            <span
-                                                class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">{{ $document->file }}</span>
+                                            <a href="{{ route('plagiarism.details', $document->id) }}"
+                                                class="inline-block px-5 py-2 mr-3 font-bold text-center text-white uppercase align-middle transition-all bg-blue-500 rounded-lg cursor-pointer leading-normal 
+                                                text-xs ease-in tracking-tight-rem shadow-xs bg-150 bg-x-25 hover:-translate-y-px active:opacity-85 hover:shadow-md">View</a>
                                         </td>
                                     </tr>
                                 @endforeach

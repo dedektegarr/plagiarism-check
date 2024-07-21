@@ -125,7 +125,7 @@
                     this.file = file;
                     this.fileUrl = URL.createObjectURL(file);
                     this.title = document.getTitle()?.split('.')[0] || file.name?.split('.')[0] || 'Unknown';
-                    this.size = file.size;
+                    this.size = `${(file.size / (1024 * 1024)).toFixed(2)} MB`;
                     this.author = document.getAuthor() || 'Unkonwn';
                     this.pages = document.getPages().length;
 
