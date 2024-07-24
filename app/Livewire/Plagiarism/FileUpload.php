@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Smalot\PdfParser\Parser;
 use \Spatie\PdfToImage\Pdf;
 use Livewire\WithFileUploads;
+use App\Services\PDFService;
 
 class FileUpload extends Component
 {
@@ -17,8 +18,9 @@ class FileUpload extends Component
     public $file;
     public $title;
     public $author;
+    public $pages;
 
-    public function uploadDocument()
+    public function uploadDocument(PDFService $pdfService)
     {
         $this->validate([
             'file' => 'required|file|mimes:pdf'
@@ -26,35 +28,27 @@ class FileUpload extends Component
 
         $pathName = $this->file->getPathname();
 
-        // PDF Parser
-        $parser = new Parser();
-        $pdf = $parser->parseFile($pathName);
-        $metadata = $pdf->getDetails();
-
         try {
+            // parse metadata
+            $metadata = $pdfService->parseMetadata($pathName);
+
             // upload file and get filename
             $fileOutputPath = $this->file->store('public/documents');
             $filenameArr = explode('/', $fileOutputPath);
-            $filename = 'documents/' . $filenameArr[count($filenameArr) - 1];
+            $filename = 'documents/' . end($filenameArr);
 
             $data = [
                 'id' => Str::uuid(),
                 'author' => $this->author ?? null,
                 'title' =>  $this->title ?? null,
-                'pages' => $metadata['Pages'] ?? null,
+                'pages' => $this->pages ?? null,
                 'creation_date' => $metadata['CreationDate'] ?? null,
                 'mod_date' => $metadata['ModDate'] ?? null,
                 'file' => $filename
             ];
 
-            // PDF to image for upload pdf cover
-            $time = time();
-            $coverOutputPath = storage_path('app/public/cover/' . $time . '-' . $data['title'] . '.png');
-
-            $pdfCover = new Pdf($pathName);
-            $pdfCover->saveImage($coverOutputPath);
-
-            $data['cover'] = 'cover/' . $time . '-' . $data['title'] . '.png';
+            // Generate Document Cover
+            $data['cover'] = $pdfService->generateCoverImage($pathName, $data['title']);
 
             // save to database
             Document::create($data);

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PlagiarismController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('dashboard.index', ['title' => "Dashboard"]);
     });
+
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
+
+    Route::get('/reference', [UserController::class, 'index'])->name('reference.index');
 
     Route::get('/plagiarism', [PlagiarismController::class, 'index'])->name('plagiarism.index');
     Route::get('/plagiarism/{document}', [PlagiarismController::class, 'details'])->name('plagiarism.details');
