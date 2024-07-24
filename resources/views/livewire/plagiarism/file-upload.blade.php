@@ -32,10 +32,10 @@
                 x-transition:enter.duration.500ms>
                 <div
                     class="border-black/12.5 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
-                    <div class="p-4 pb-0 rounded-t-4 flex">
-                        <h6 class="mb-0 dark:text-white line-clamp-1" x-text="title"></h6>
+                    {{-- <div class="p-4 pb-0 rounded-t-4 flex">
+                        <h6 class="mb-0 dark:text-white" x-text="title"></h6>
                         <span class="text-sm font-bold mt-1 flex-1">.pdf</span>
-                    </div>
+                    </div> --}}
                     <div class="flex-auto p-4">
                         <ul class="flex flex-col pl-0 mb-0 rounded-lg">
                             <li
@@ -46,9 +46,31 @@
                                         <i class="text-white fas fa-user relative top-0.75 text-xxs"></i>
                                     </div>
                                     <div class="flex flex-col">
-                                        <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">Author
+                                        <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">Judul
                                         </h6>
-                                        <span class="text-xs leading-tight dark:text-white/80" x-text="author"></span>
+                                        {{-- <span class="text-xs leading-tight dark:text-white/80" x-text="title"></span> --}}
+
+                                        <textarea name="title" id="title" x-model="title" @input="updateMetadata"
+                                            class="outline-none border-slate-500 bg-transparent rounded-sm w-56 text-sm" autofocus></textarea>
+                                    </div>
+                                </div>
+                            </li>
+                            <li
+                                class="relative flex justify-between py-2 pr-4 mb-2 border-0 rounded-t-lg rounded-xl text-inherit">
+                                <div class="flex items-center">
+                                    <div
+                                        class="inline-block w-8 h-8 mr-4 text-center text-black bg-center shadow-sm fill-current stroke-none bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl">
+                                        <i class="text-white fas fa-user relative top-0.75 text-xxs"></i>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">Penulis
+                                        </h6>
+                                        {{-- <span class="text-xs leading-tight dark:text-white/80" x-text="author"></span> --}}
+
+                                        <input type="text" name="author" id="author" x-model="author"
+                                            @input="updateMetadata" row="0"
+                                            class="outline-none border-slate-500 bg-transparent rounded-sm w-56 text-sm" />
+
                                     </div>
                                 </div>
                             </li>
@@ -60,7 +82,7 @@
                                         <i class="text-white fas fa-file relative top-0.75 text-xxs"></i>
                                     </div>
                                     <div class="flex flex-col">
-                                        <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">Pages
+                                        <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">Halaman
                                         </h6>
                                         <span class="text-xs leading-tight dark:text-white/80" x-text="pages"></span>
                                     </div>
@@ -73,7 +95,8 @@
                                         <i class="text-white fas fa-save relative top-0.75 text-xxs"></i>
                                     </div>
                                     <div class="flex flex-col">
-                                        <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">Size</h6>
+                                        <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">Ukuran
+                                        </h6>
                                         <span class="text-xs leading-tight dark:text-white/80" x-text="size"></span>
                                     </div>
                                 </div>
@@ -110,19 +133,19 @@
         return {
             file: null,
             fileUrl: null,
-            title: null,
-            author: null,
+            title: @entangle('title'),
+            author: @entangle('author'),
             pages: null,
             size: null,
 
             async previewPdf(e) {
-                const file = e.target.files[0];
+                const file = e.target.files[0]
 
                 if (file && file.type === 'application/pdf') {
                     const arrayBuffer = await file.arrayBuffer();
                     const document = await PDFLib.PDFDocument.load(arrayBuffer);
 
-                    this.file = file;
+                    this.file = document;
                     this.fileUrl = URL.createObjectURL(file);
                     this.title = document.getTitle()?.split('.')[0] || file.name?.split('.')[0] || 'Unknown';
                     this.size = `${(file.size / (1024 * 1024)).toFixed(2)} MB`;
@@ -134,6 +157,13 @@
                     this.pdfFile = null;
                     this.pdfURL = null;
                 }
+            },
+
+            updateMetadata(e) {
+                const metadata = e.target.name;
+                const value = e.target.value;
+
+                this[metadata] = value;
             },
 
             cancel() {

@@ -15,6 +15,8 @@ class FileUpload extends Component
     use WithFileUploads;
 
     public $file;
+    public $title;
+    public $author;
 
     public function uploadDocument()
     {
@@ -37,8 +39,8 @@ class FileUpload extends Component
 
             $data = [
                 'id' => Str::uuid(),
-                'author' => $metadata['Author'] ?? null,
-                'title' =>  isset($metadata['Title']) ? explode(".", $metadata['Title'])[0] : null,
+                'author' => $this->author ?? null,
+                'title' =>  $this->title ?? null,
                 'pages' => $metadata['Pages'] ?? null,
                 'creation_date' => $metadata['CreationDate'] ?? null,
                 'mod_date' => $metadata['ModDate'] ?? null,

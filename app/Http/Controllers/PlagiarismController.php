@@ -9,7 +9,7 @@ class PlagiarismController extends Controller
 {
     public function index()
     {
-        return view('plagiarism.index', ['title' => "Plagiarism Check", 'documents' => Document::all()]);
+        return view('plagiarism.index', ['title' => "Cek Plagiasi", 'documents' => Document::all()]);
     }
 
     public function details(Document $document)
