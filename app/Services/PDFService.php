@@ -7,22 +7,6 @@ use Smalot\PdfParser\Parser;
 
 class PDFService
 {
-    public function getText($pathname)
-    {
-        $parser = new Parser();
-        $pdf = $parser->parseFile($pathname);
-
-        $text = $pdf->getText();
-
-        // Mengganti simbol \n dan \t dengan spasi
-        $cleanText = str_replace(["\n", "\t"], " ", $text);
-
-        // Menghapus karakter whitespace berlebih (opsional)
-        $cleanText = preg_replace('/\s+/', ' ', $cleanText);
-
-        return $cleanText;
-    }
-
     public function parseMetadata($pathname)
     {
         $parser = new Parser();
@@ -51,11 +35,11 @@ class PDFService
         return 'cover/' . $time . '-' . $title . '.png';
     }
 
-    public function preprocessText($text)
+    public function preprocessDocument($pathname)
     {
-        $scriptPath = "../app/Python/PreprocessText.py";
-        $escapedText = escapeshellarg($text);
-        $command = escapeshellcmd("python $scriptPath $escapedText");
+        $scriptPath = "../app/Python/Preprocess.py";
+        $escaped = escapeshellarg($pathname);
+        $command = escapeshellcmd("python $scriptPath $escaped");
         $output = shell_exec($command);
 
         return $output;

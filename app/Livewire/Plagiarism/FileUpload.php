@@ -4,6 +4,7 @@ namespace App\Livewire\Plagiarism;
 
 use Livewire\Component;
 use App\Models\Document;
+use App\Models\WordToken;
 use Exception;
 use Illuminate\Support\Str;
 use Smalot\PdfParser\Parser;
@@ -29,14 +30,13 @@ class FileUpload extends Component
         $pathName = $this->file->getPathname();
 
         try {
-            // get document text and parse metadata
-            $fullText = $pdfService->getText($pathName);
-            $metadata = $pdfService->parseMetadata($pathName);
-
             // upload pdf and get filename
             $filename = $pdfService->uploadPdf($this->file);
 
-            $data = [
+            // parse metadata
+            $metadata = $pdfService->parseMetadata($pathName);
+
+            $document = [
                 'id' => Str::uuid(),
                 'author' => $this->author ?? null,
                 'title' =>  $this->title ?? null,
@@ -47,13 +47,14 @@ class FileUpload extends Component
             ];
 
             // Generate Document Cover
-            $data['cover'] = $pdfService->generateCoverImage($pathName, $data['title']);
+            $document['cover'] = $pdfService->generateCoverImage($pathName, $document['title']);
+
+            // get preprocessed document text
+            $wordTokens = ['id' => Str::uuid(), 'document_id' => $document['id'], 'word_tokens' => $pdfService->preprocessDocument($pathName)];
 
             // save to database
-            Document::create($data);
-
-            // === SAVE PREPROCESS TEXT ===
-            $preprocessedText = $pdfService->preprocessText($fullText);
+            Document::create($document);
+            WordToken::create($wordTokens);
 
             return redirect()->back()->with('success', 'Dokumen berhasil di upload');
         } catch (Exception $e) {

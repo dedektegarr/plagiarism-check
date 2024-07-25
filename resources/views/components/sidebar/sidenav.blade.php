@@ -54,8 +54,8 @@
              <x-sidebar.sidenav-link :active="request()->is('/')" icon="fas fa-tv text-blue-500"
                  href="/">Dashboard</x-sidebar.sidenav-link>
 
-             <x-sidebar.sidenav-link :active="request()->is('pengguna')" icon="fas fa-users text-green-500"
-                 href="{{ route('user.index') }}">Pengguna</x-sidebar.sidenav-link>
+             {{-- <x-sidebar.sidenav-link :active="request()->is('pengguna')" icon="fas fa-users text-green-500"
+                 href="{{ route('user.index') }}">Pengguna</x-sidebar.sidenav-link> --}}
 
              <x-sidebar.sidenav-link :active="request()->is('plagiarism')" icon="fas fa-edit text-orange-500"
                  href="{{ route('plagiarism.index') }}">Cek Plagiasi</x-sidebar.sidenav-link>
