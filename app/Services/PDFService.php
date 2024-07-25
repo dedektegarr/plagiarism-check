@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use Spatie\PdfToImage\Pdf;
 use Smalot\PdfParser\Parser;
 
 class PDFService
@@ -22,17 +21,6 @@ class PDFService
         $filename = 'documents/' . end($filenameArr);
 
         return $filename;
-    }
-
-    public function generateCoverImage($pathName, $title)
-    {
-        $time = time();
-        $coverOutputPath = storage_path('app/public/cover/' . $time . '-' . $title . '.png');
-
-        $pdfCover = new Pdf($pathName);
-        $pdfCover->saveImage($coverOutputPath);
-
-        return 'cover/' . $time . '-' . $title . '.png';
     }
 
     public function preprocessDocument($pathname)

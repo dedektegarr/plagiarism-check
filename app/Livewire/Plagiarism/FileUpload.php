@@ -7,8 +7,6 @@ use App\Models\Document;
 use App\Models\WordToken;
 use Exception;
 use Illuminate\Support\Str;
-use Smalot\PdfParser\Parser;
-use \Spatie\PdfToImage\Pdf;
 use Livewire\WithFileUploads;
 use App\Services\PDFService;
 
@@ -45,9 +43,6 @@ class FileUpload extends Component
                 'mod_date' => $metadata['ModDate'] ?? null,
                 'file' => $filename
             ];
-
-            // Generate Document Cover
-            $document['cover'] = $pdfService->generateCoverImage($pathName, $document['title']);
 
             // get preprocessed document text
             $wordTokens = ['id' => Str::uuid(), 'document_id' => $document['id'], 'word_tokens' => $pdfService->preprocessDocument($pathName)];
