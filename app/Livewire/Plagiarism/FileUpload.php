@@ -29,13 +29,12 @@ class FileUpload extends Component
         $pathName = $this->file->getPathname();
 
         try {
-            // parse metadata
+            // get document text and parse metadata
+            $fullText = $pdfService->getText($pathName);
             $metadata = $pdfService->parseMetadata($pathName);
 
-            // upload file and get filename
-            $fileOutputPath = $this->file->store('public/documents');
-            $filenameArr = explode('/', $fileOutputPath);
-            $filename = 'documents/' . end($filenameArr);
+            // upload pdf and get filename
+            $filename = $pdfService->uploadPdf($this->file);
 
             $data = [
                 'id' => Str::uuid(),
@@ -52,6 +51,9 @@ class FileUpload extends Component
 
             // save to database
             Document::create($data);
+
+            // === SAVE PREPROCESS TEXT ===
+            $preprocessedText = $pdfService->preprocessText($fullText);
 
             return redirect()->back()->with('success', 'Dokumen berhasil di upload');
         } catch (Exception $e) {
