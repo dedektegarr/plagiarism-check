@@ -13,8 +13,8 @@
                                     stroke-width="2"
                                     d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                             </svg>
-                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Klik
-                                    untuk upload</span> atau seret dan lepas</p>
+                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Silakan
+                                    upload dokumen terlebih dahulu</p>
                             <p class="text-xs text-gray-500 dark:text-gray-400">PDF</p>
                         </div>
                         <input @change="previewPdf" wire:model="file" id="dropzone-file" type="file"
@@ -31,10 +31,6 @@
                 x-transition:enter.duration.500ms>
                 <div
                     class="border-black/12.5 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
-                    {{-- <div class="p-4 pb-0 rounded-t-4 flex">
-                        <h6 class="mb-0 dark:text-white" x-text="title"></h6>
-                        <span class="text-sm font-bold mt-1 flex-1">.pdf</span>
-                    </div> --}}
                     <div class="flex-auto p-4">
                         <ul class="flex flex-col pl-0 mb-0 rounded-lg">
                             <li
@@ -49,8 +45,8 @@
                                         </h6>
                                         {{-- <span class="text-xs leading-tight dark:text-white/80" x-text="title"></span> --}}
 
-                                        <textarea name="title" id="title" x-model="title" @input="updateMetadata"
-                                            class="outline-none border-slate-500 bg-transparent rounded-sm w-56 text-sm capitalize" autofocus></textarea>
+                                        <textarea name="title" id="title" x-model="title" @input="updateMetadata" rows="2"
+                                            class="outline-none mt-1 bg-slate-700/30 p-2 rounded-md w-80 md:w-96 lg:w-56 2xl:w-96 text-sm capitalize" autofocus></textarea>
                                     </div>
                                 </div>
                             </li>
@@ -68,7 +64,7 @@
 
                                         <input type="text" name="author" id="author" x-model="author"
                                             autocomplete="off" @input="updateMetadata" row="0"
-                                            class="outline-none border-slate-500 bg-transparent capitalize rounded-sm w-56 text-sm" />
+                                            class="outline-none mt-1 bg-slate-700/30 p-2 rounded-md border-slate-500 capitalize w-80 md:w-96 lg:w-56 2xl:w-96 text-sm" />
 
                                     </div>
                                 </div>
@@ -83,7 +79,7 @@
                                     <div class="flex flex-col">
                                         <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">Halaman
                                         </h6>
-                                        <span class="text-xs leading-tight dark:text-white/80" x-text="pages"></span>
+                                        <span class="text-xs leading-tight" x-text="pages"></span>
                                         <input type="hidden" name="pages" x-model="pages">
                                     </div>
                                 </div>
@@ -97,7 +93,7 @@
                                     <div class="flex flex-col">
                                         <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">Ukuran
                                         </h6>
-                                        <span class="text-xs leading-tight dark:text-white/80" x-text="size"></span>
+                                        <span class="text-xs leading-tight" x-text="size"></span>
                                     </div>
                                 </div>
                             </li>

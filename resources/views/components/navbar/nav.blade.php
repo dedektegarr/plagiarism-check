@@ -9,13 +9,16 @@
                 <li class="text-sm leading-normal">
                     <a class="text-white opacity-50" href="javascript:;">Pages</a>
                 </li>
-
-                @foreach (Request::segments() as $segment)
+                <li class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
+                    aria-current="page">
+                    {{ $title }}
+                </li>
+                {{-- @foreach (Request::segments() as $segment)
                     <li class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
                         aria-current="page">
                         {{ $segment ?? 'D' }}
                     </li>
-                @endforeach
+                @endforeach --}}
             </ol>
             <h6 class="mb-0 font-bold text-white capitalize">{{ $title }}</h6>
         </nav>

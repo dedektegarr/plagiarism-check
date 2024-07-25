@@ -51,7 +51,7 @@ class FileUpload extends Component
             Document::create($document);
             WordToken::create($wordTokens);
 
-            return redirect()->back()->with('success', 'Dokumen berhasil di upload');
+            return redirect()->route('plagiarism.details', $document['id'])->with('success', 'Dokumen berhasil di upload');
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Terjadi kesalahan saat mengunggah dokumen');
         }
