@@ -70,12 +70,12 @@
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                             <span
-                                                class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">{{ $document->creation_date }}</span>
+                                                class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">{{ Carbon::parse($document->creation_date)->translatedFormat('d F Y') }}</span>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                             <span
-                                                class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">{{ $document->mod_date }}</span>
+                                                class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400">{{ Carbon::parse($document->creation_date)->translatedFormat('d F Y') }}</span>
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
@@ -87,13 +87,8 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
-                            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                        </div>
-                        <div class="ps__rail-y" style="top: 0px; right: 0px;">
-                            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
-                        </div>
                     </div>
+                    {{ $documents->links() }}
                 </div>
             </div>
         </div>

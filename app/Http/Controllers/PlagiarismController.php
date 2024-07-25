@@ -10,12 +10,7 @@ class PlagiarismController extends Controller
 {
     public function index()
     {
-        $documents = Document::latest()->paginate(5)->map(function ($doc) {
-            $doc->creation_date = Carbon::parse($doc->creation_date)->translatedFormat('d F Y');
-            $doc->mod_date = Carbon::parse($doc->mod_date)->translatedFormat('d F Y');
-
-            return $doc;
-        });
+        $documents = Document::latest()->paginate(5);
 
         return view('plagiarism.index', ['title' => "Cek Plagiasi", 'documents' => $documents]);
     }

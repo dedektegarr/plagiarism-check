@@ -43,7 +43,7 @@
                                 <div class="flex items-center">
                                     <div
                                         class="inline-block w-8 h-8 mr-4 text-center text-black bg-center shadow-sm fill-current stroke-none bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 rounded-xl">
-                                        <i class="text-white fas fa-user relative top-0.75 text-xxs"></i>
+                                        <i class="text-white fas fa-pencil relative top-0.75 text-xxs"></i>
                                     </div>
                                     <div class="flex flex-col">
                                         <h6 class="mb-1 text-sm leading-normal text-slate-700 dark:text-white">Judul
@@ -51,7 +51,7 @@
                                         {{-- <span class="text-xs leading-tight dark:text-white/80" x-text="title"></span> --}}
 
                                         <textarea name="title" id="title" x-model="title" @input="updateMetadata"
-                                            class="outline-none border-slate-500 bg-transparent rounded-sm w-56 text-sm" autofocus></textarea>
+                                            class="outline-none border-slate-500 bg-transparent rounded-sm w-56 text-sm capitalize" autofocus></textarea>
                                     </div>
                                 </div>
                             </li>
@@ -68,8 +68,8 @@
                                         {{-- <span class="text-xs leading-tight dark:text-white/80" x-text="author"></span> --}}
 
                                         <input type="text" name="author" id="author" x-model="author"
-                                            autocomplete="false" @input="updateMetadata" row="0"
-                                            class="outline-none border-slate-500 bg-transparent rounded-sm w-56 text-sm" />
+                                            autocomplete="off" @input="updateMetadata" row="0"
+                                            class="outline-none border-slate-500 bg-transparent capitalize rounded-sm w-56 text-sm" />
 
                                     </div>
                                 </div>
